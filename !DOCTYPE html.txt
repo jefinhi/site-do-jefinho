@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumière Pet Shop & High-End Spa</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#0284c7',      /* Azul Confiante */
+              yellow: '#eab308',    /* Amarelo Ouro */
+              green: '#10b981',     /* Verde Limpeza/Saúde */
+              orange: '#f97316',    /* Laranja Entusiasmo */
+              red: '#ef4444',       /* Vermelho Destaque */
+              timber: '#422a1d',    /* Tom Amadeirado Escuro */
+              timberLight: '#85583f',/* Tom Amadeirado Suave */
+              woodCream: '#fdfbf7',  /* Fundo Clean Amadeirado */
+            }
+          },
+          animation: {
+            'float-slow': 'float 7s ease-in-out infinite',
+            'float-reverse': 'floatReverse 8s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-18px) rotate(3deg)' },
+            },
+            floatReverse: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(16px) rotate(-4deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.7)' },
+              '50%': { boxShadow: '0 0 0 20px rgba(34, 197, 94, 0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos Customizados & Texturas Amadeiradas Clean */
+    body {
+      background-color: #fdfbf7;
+      color: #1c1917;
+      overflow-x: hidden;
+    }
+
+    /* Textura de Madeira Fina Luxuosa nas bordas e detalhes */
+    .wood-accent-gradient {
+      background: linear-gradient(135deg, #422a1d 0%, #633f2c 50%, #422a1d 100%);
+    }
+
+    .wood-border {
+      border-color: #85583f;
+    }
+
+    /* Efeito de Vidro Fosco Flutuante (Glassmorphism Luxo) */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 50px rgba(66, 42, 29, 0.05);
+    }
+
+    .glass-card-dark {
+      background: rgba(30, 20, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Esconder Scrollbar no Carrossel Netflix */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Brilho Dinâmico das Cores nos Detalhes */
+    .tag-blue { background: rgba(2, 132, 199, 0.1); color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.2); }
+    .tag-green { background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.2); }
+    .tag-orange { background: rgba(249, 115, 22, 0.1); color: #ea580c; border: 1px solid rgba(249, 115, 22, 0.2); }
+    .tag-yellow { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 1px solid rgba(234, 179, 8, 0.3); }
+    .tag-red { background: rgba(239, 68, 68, 0.1); color: #dc2626; border: 1px solid rgba(239, 68, 68, 0.2); }
+
+    /* Netflix Card Hover Zoom */
+    .netflix-card {
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .netflix-card:hover {
+      transform: scale(1.06) translateY(-8px);
+      z-index: 30;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-orange selection:text-white">
+
+  <!-- ================= BACKGROUND FLOATING ELEMENTS (ANIMAIS, BRINQUEDOS E VASILHAS TRANSPARENTES EM MOVIMENTO) ================= -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <!-- Cachorro Flutuante Transparente -->
+    <div class="absolute top-20 left-[3%] w-40 h-40 opacity-20 hover:opacity-40 transition-opacity animate-float-slow">
+      <div class="w-full h-full rounded-full bg-brand-blue/20 backdrop-blur-md p-3 border border-brand-blue/30 flex items-center justify-center shadow-lg">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=300&q=80" alt="Pet Flutuante" class="w-full h-full object-cover rounded-full mix-blend-multiply opacity-80" />
+      </div>
+    </div>
+
+    <!-- Vasilha Amarela Flutuante -->
+    <div class="absolute top-[45%] left-[2%] w-28 h-28 opacity-25 animate-float-reverse">
+      <div class="w-full h-full rounded-2xl bg-brand-yellow/30 backdrop-blur-md border border-brand-yellow/40 flex flex-col items-center justify-center p-2 shadow-xl rotate-12">
+        <i data-lucide="utensils" class="w-10 h-10 text-brand-yellow mb-1"></i>
+        <span class="text-[9px] font-bold text-amber-900 tracking-wider uppercase">Gourmet Bowl</span>
+      </div>
+    </div>
+
+    <!-- Gato Elegante Transparente -->
+    <div class="absolute top-[28%] right-[3%] w-44 h-44 opacity-20 animate-float-reverse">
+      <div class="w-full h-full rounded-full bg-brand-orange/20 backdrop-blur-md p-3 border border-brand-orange/30 flex items-center justify-center shadow-lg">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=300&q=80" alt="Gato Flutuante" class="w-full h-full object-cover rounded-full mix-blend-multiply opacity-80" />
+      </div>
+    </div>
+
+    <!-- Brinquedo/Osso Flutuante Laranja -->
+    <div class="absolute bottom-[20%] right-[4%] w-32 h-32 opacity-25 animate-float-slow">
+      <div class="w-full h-full rounded-3xl bg-brand-orange/20 backdrop-blur-md border border-brand-orange/40 flex flex-col items-center justify-center p-3 shadow-xl -rotate-12">
+        <i data-lucide="bone" class="w-12 h-12 text-brand-orange"></i>
+        <span class="text-[9px] font-bold text-orange-900 uppercase tracking-widest mt-1">Toy Play</span>
+      </div>
+    </div>
+
+    <!-- Pata Verde Sanitizada Flutuante -->
+    <div class="absolute bottom-[10%] left-[5%] w-36 h-36 opacity-20 animate-float-slow">
+      <div class="w-full h-full rounded-full bg-brand-green/20 backdrop-blur-md border border-brand-green/40 flex items-center justify-center shadow-xl">
+        <i data-lucide="paw-print" class="w-16 h-16 text-brand-green"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= HEADER PREMIUM COM ACABAMENTO AMADEIRADO E NAVEGAÇÃO CHIQUE ================= -->
+  <header class="sticky top-0 z-50 w-full transition-all duration-300 backdrop-blur-xl bg-white/80 border-b border-amber-900/10">
+    <!-- Topbar Promocional Sanitizada -->
+    <div class="wood-accent-gradient text-amber-100 text-xs py-2 px-4">
+      <div class="max-w-7xl mx-auto flex justify-between items-center font-medium">
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-yellow"></i> Padrão de Higiene Médica Hospitalar & Spa 5 Estrelas</span>
+          <span class="hidden md:inline text-amber-300/40">|</span>
+          <span class="hidden md:flex items-center gap-1 text-amber-200"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-green"></i> Atendimento Segunda a Sábado: 08h - 20h</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#agendamento" class="hover:text-brand-yellow transition-colors flex items-center gap-1">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Horários Disponíveis Hoje
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegação Principal -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo de Luxo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl wood-accent-gradient flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform border border-amber-600/30">
+            <i data-lucide="paw-print" class="w-7 h-7 text-brand-yellow"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif text-2xl font-bold tracking-tight text-brand-timber flex items-center gap-1">
+              LUMIÈRE <span class="text-xs font-sans px-2 py-0.5 rounded-full tag-yellow font-semibold tracking-wider">PET SPA</span>
+            </span>
+            <span class="text-[10px] tracking-[0.25em] font-semibold uppercase text-brand-timberLight">Cuidado Estético & Veterinário</span>
+          </div>
+        </a>
+
+        <!-- Links Principais -->
+        <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-stone-700">
+          <a href="#diferenciais" class="hover:text-brand-blue transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-blue"></span> Diferenciais
+          </a>
+          <a href="#servicos" class="hover:text-brand-orange transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-orange"></span> Spa & Grooming
+          </a>
+          <a href="#produtos" class="hover:text-brand-yellow transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-yellow"></span> Acessórios & Bowls
+          </a>
+          <a href="#netflix-reviews" class="hover:text-brand-red transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-red"></span> Depoimentos Netflix
+          </a>
+          <a href="#planos" class="hover:text-brand-green transition-colors flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-green"></span> Planos VIP
+          </a>
+        </nav>
+
+        <!-- Ações de Chamada (CTA) -->
+        <div class="flex items-center gap-3">
+          <a href="#agendamento" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white wood-accent-gradient hover:shadow-xl hover:shadow-amber-900/20 hover:-translate-y-0.5 transition-all border border-amber-700/50">
+            <i data-lucide="calendar-check" class="w-4 h-4 text-brand-yellow"></i>
+            <span>Agendar Agora</span>
+          </a>
+
+          <!-- Botão Menu Mobile -->
+          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-stone-700 hover:bg-amber-100/50">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= HERO SECTION MODERNISSSIMA E CHIQUE COM VÍDEO E ELEMENTOS EM MOVIMENTO ================= -->
+  <section class="relative pt-8 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+    
+    <!-- Detalhe Amadeirado Curvo no Fundo -->
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-stone-100/60 -z-10 rounded-l-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Texto Esquerda -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Badges de Alto Nível -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-stone-200 shadow-sm">
+            <span class="flex h-2.5 w-2.5 rounded-full bg-brand-green animate-ping"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-700 flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-4 h-4 text-brand-green"></i> Ambiente 100% Esterilizado & Odor-Free
+            </span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-timber leading-[1.15]">
+            O Ritual de Luxo & Carinho que o Seu Pet <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-brand-yellow to-brand-green">Realmente Merece.</span>
+          </h1>
+
+          <p class="text-lg text-stone-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Unimos o conforto da arquitetura amadeirada clean com a mais alta tecnologia de estética animal. Um refúgio ultra limpo, sem estresse e com tratamento vip individualizado.
+          </p>
+
+          <!-- Selos Coloridos de Especialidades -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-2 pt-2">
+            <span class="px-3 py-1 rounded-lg text-xs font-bold tag-blue flex items-center gap-1">
+              <i data-lucide="droplet" class="w-3.5 h-3.5"></i> Banho de Ozônio
+            </span>
+            <span class="px-3 py-1 rounded-lg text-xs font-bold tag-yellow flex items-center gap-1">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Tosa de Tesoura Internacional
+            </span>
+            <span class="px-3 py-1 rounded-lg text-xs font-bold tag-green flex items-center gap-1">
+              <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i> Spa Relaxante
+            </span>
+            <span class="px-3 py-1 rounded-lg text-xs font-bold tag-orange flex items-center gap-1">
+              <i data-lucide="utensils" class="w-3.5 h-3.5"></i> Nutrição Natural Gourmet
+            </span>
+            <span class="px-3 py-1 rounded-lg text-xs font-bold tag-red flex items-center gap-1">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i> Monitoramento ao Vivo
+            </span>
+          </div>
+
+          <!-- Botões Principais de Ação -->
+          <div class="pt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#agendamento" class="w-full sm:w-auto px-8 py-4 rounded-2xl wood-accent-gradient text-white font-bold text-base shadow-xl shadow-amber-900/25 hover:scale-105 transition-all flex items-center justify-center gap-3 border border-amber-600/40">
+              <i data-lucide="calendar" class="w-5 h-5 text-brand-yellow"></i>
+              <span>Agendar Experiência VIP</span>
+            </a>
+
+            <button onclick="openWhatsAppDirect('Olá! Gostaria de consultar a disponibilidade de horários para o meu pet.')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-stone-800 font-bold text-base border-2 border-stone-200 shadow-md hover:border-brand-green hover:text-brand-green transition-all flex items-center justify-center gap-3">
+              <i data-lucide="message-circle" class="w-5 h-5 text-brand-green"></i>
+              <span>Falar pelo WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- Mini Avaliação Social -->
+          <div class="pt-4 flex items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-stone-500">
+            <div class="flex -space-x-2">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Cliente 1">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Cliente 2">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Cliente 3">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover text-xs bg-amber-800 text-white flex items-center justify-center font-bold" alt="+">
+            </div>
+            <div>
+              <div class="flex text-amber-500">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              </div>
+              <span><strong>4.9/5.0</strong> de 1.420+ tutores exigentes no Google</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mídia Direita (Fotos Realistas de Alta Qualidade com Moldura Amadeirada e Cards Flutuantes) -->
+        <div class="lg:col-span-5 relative">
+          
+          <!-- Moldura Amadeirada Clean de Destaque -->
+          <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl p-3 bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950 shadow-2xl border border-amber-700/40">
+            <div class="relative overflow-hidden rounded-2xl bg-stone-900 aspect-[4/5]">
+              <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80" alt="Golden Retriever Limpo e Feliz" class="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-700" />
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+              <!-- Overlay Textual na Foto -->
+              <div class="absolute bottom-4 left-4 right-4 text-white p-4 rounded-xl backdrop-blur-md bg-stone-900/60 border border-white/10">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h4 class="font-bold text-sm">Príncipe Thor (Golden Retriever)</h4>
+                    <p class="text-xs text-amber-200">Pós-Banho de Hidratação com Óleo de Argan</p>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-brand-green text-white uppercase tracking-wider">Finalizado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Flutuante 1: Vasilha & Nutrição (Animada) -->
+          <div class="absolute -bottom-6 -left-6 max-w-[200px] glass-card p-3 rounded-2xl shadow-2xl animate-float-slow hidden sm:flex items-center gap-3 border-l-4 border-l-brand-yellow">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0">
+              <i data-lucide="utensils" class="w-5 h-5 text-brand-yellow"></i>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold text-stone-800">Vasilhas Sanitizadas</p>
+              <p class="text-[9px] text-stone-500">Aço Inox Cirúrgico com Esterilização UV</p>
+            </div>
+          </div>
+
+          <!-- Card Flutuante 2: Brinquedo & Animação (Animada) -->
+          <div class="absolute -top-6 -right-6 max-w-[210px] glass-card p-3 rounded-2xl shadow-2xl animate-float-reverse hidden sm:flex items-center gap-3 border-l-4 border-l-brand-orange">
+            <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
+              <i data-lucide="smile" class="w-5 h-5 text-brand-orange"></i>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold text-stone-800">Playground Sem Risco</p>
+              <p class="text-[9px] text-stone-500">Brinquedos Atóxicos e Antibacterianos</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SEÇÃO DE DIFERENCIAIS: LIMPEZA, ORGANIZAÇÃO & LUXO ================= -->
+  <section id="diferenciais" class="py-20 bg-white border-y border-stone-200 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-blue px-3 py-1 rounded-full bg-sky-50 border border-sky-200">
+          Padrão Supremo de Higiene
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-timber mt-3">
+          Por que somos a escolha número 1 de tutores criteriosos?
+        </h2>
+        <p class="text-stone-600 mt-3 text-base">
+          Combinamos aconchego amadeirado com rigidez clínica. Seu pet tratado como realeza em instalações impecáveis.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Card Azul -->
+        <div class="p-6 rounded-3xl bg-stone-50 border border-stone-200 hover:border-brand-blue hover:shadow-xl transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-sky-100 text-brand-blue flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="sparkles" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-bold text-lg text-stone-800 mb-2">Desinfecção com Ozônio</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Água purificada e ozonizada em cada banho para eliminar fungos, bactérias e rejuvenescer a pele.
+          </p>
+          <div class="mt-4 pt-4 border-t border-stone-200 flex items-center text-xs font-bold text-brand-blue">
+            <span>Tecnologia Médica</span> <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+        <!-- Card Verde -->
+        <div class="p-6 rounded-3xl bg-stone-50 border border-stone-200 hover:border-brand-green hover:shadow-xl transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-green flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield-check" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-bold text-lg text-stone-800 mb-2">Toalhas Individuais Liofilizadas</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Nunca reutilizamos toalhas. Cada pet recebe um kit esterilizado e embalado a vácuo individualmente.
+          </p>
+          <div class="mt-4 pt-4 border-t border-stone-200 flex items-center text-xs font-bold text-brand-green">
+            <span>Zero Contaminação</span> <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+        <!-- Card Laranja -->
+        <div class="p-6 rounded-3xl bg-stone-50 border border-stone-200 hover:border-brand-orange hover:shadow-xl transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-orange-100 text-brand-orange flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-bold text-lg text-stone-800 mb-2">Atendimento Low-Stress</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Ambiente acústico isolado, aromaterapia relaxante e sem gaiolas de espera metálicas desconfortáveis.
+          </p>
+          <div class="mt-4 pt-4 border-t border-stone-200 flex items-center text-xs font-bold text-brand-orange">
+            <span>Bem-Estar Animal</span> <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+        <!-- Card Amarelo -->
+        <div class="p-6 rounded-3xl bg-stone-50 border border-stone-200 hover:border-brand-yellow hover:shadow-xl transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="award" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-bold text-lg text-stone-800 mb-2">Groomers Premiados</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Esteticistas certificados internacionalmente especialistas em tosas da raça e acabamentos de tesoura.
+          </p>
+          <div class="mt-4 pt-4 border-t border-stone-200 flex items-center text-xs font-bold text-amber-700">
+            <span>Mestres da Estética</span> <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= DEPOIMENTOS EM FORMATO NETFLIX (INTERATIVO & DE ALTO IMPACTO) ================= -->
+  <section id="netflix-reviews" class="py-20 wood-accent-gradient text-white relative overflow-hidden">
+    
+    <!-- Efeitos de Luz no Fundo -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Cabeçalho estilo Netflix -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-brand-red font-black text-sm uppercase tracking-widest mb-1">
+            <span class="w-3 h-3 rounded-full bg-brand-red animate-pulse"></span>
+            <span>LUMIÈRE FLIX • DEPOIMENTOS EM VÍDEO & FOTO</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-amber-100">
+            Acompanhe as histórias de quem ama seus pets
+          </h2>
+        </div>
+
+        <!-- Controles do Carrossel -->
+        <div class="flex items-center gap-3">
+          <button id="netflix-prev" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+          </button>
+          <button id="netflix-next" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carrossel Estilo Netflix -->
+      <div id="netflix-container" class="flex gap-6 overflow-x-auto no-scrollbar py-4 scroll-smooth">
+        
+        <!-- Card 1 -->
+        <div class="netflix-card shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden glass-card-dark cursor-pointer group">
+          <div class="relative h-96">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80" alt="Depoimento 1" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            
+            <!-- Badge estilo Top 10 -->
+            <div class="absolute top-3 left-3 bg-brand-red text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="flame" class="w-3 h-3"></i> Top #1 Depoimento
+            </div>
+
+            <!-- Botão Play Simulado -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+              <div class="w-14 h-14 rounded-full bg-brand-red/90 text-white flex items-center justify-center shadow-xl backdrop-blur-sm">
+                <i data-lucide="play" class="w-7 h-7 fill-white ml-1"></i>
+              </div>
+            </div>
+
+            <!-- Conteúdo Inferior -->
+            <div class="absolute bottom-0 p-5 w-full">
+              <div class="flex items-center gap-1 text-amber-400 mb-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              </div>
+              <h4 class="font-bold text-lg text-white">"Meu Poodle odeia banho, mas aqui ele sorri!"</h4>
+              <p class="text-xs text-stone-300 mt-1 line-clamp-2">Dra. Renata M. & Bob (Tosa Baby + Hidratação)</p>
+              <div class="mt-3 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+                <span class="text-brand-green font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3"></i> Cliente Frequente VIP</span>
+                <span>2 min de vídeo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="netflix-card shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden glass-card-dark cursor-pointer group">
+          <div class="relative h-96">
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=600&q=80" alt="Depoimento 2" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            
+            <div class="absolute top-3 left-3 bg-brand-blue text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider">
+              Recomendado por Veterinários
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+              <div class="w-14 h-14 rounded-full bg-brand-blue/90 text-white flex items-center justify-center shadow-xl backdrop-blur-sm">
+                <i data-lucide="play" class="w-7 h-7 fill-white ml-1"></i>
+              </div>
+            </div>
+
+            <div class="absolute bottom-0 p-5 w-full">
+              <div class="flex items-center gap-1 text-amber-400 mb-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              </div>
+              <h4 class="font-bold text-lg text-white">"O pelo do meu Pug nunca ficou tão cheiroso e macio."</h4>
+              <p class="text-xs text-stone-300 mt-1 line-clamp-2">Carlos E. & Oliver (Banho de Ozônio)</p>
+              <div class="mt-3 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+                <span class="text-brand-blue font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3"></i> Tutor há 3 anos</span>
+                <span>1.5 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="netflix-card shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden glass-card-dark cursor-pointer group">
+          <div class="relative h-96">
+            <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=600&q=80" alt="Depoimento 3" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            
+            <div class="absolute top-3 left-3 bg-brand-orange text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider">
+              Tosa de Tesoura Perfeita
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+              <div class="w-14 h-14 rounded-full bg-brand-orange/90 text-white flex items-center justify-center shadow-xl backdrop-blur-sm">
+                <i data-lucide="play" class="w-7 h-7 fill-white ml-1"></i>
+              </div>
+            </div>
+
+            <div class="absolute bottom-0 p-5 w-full">
+              <div class="flex items-center gap-1 text-amber-400 mb-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              </div>
+              <h4 class="font-bold text-lg text-white">"Ambiente limpo de verdade! Sem cheiro de canil."</h4>
+              <p class="text-xs text-stone-300 mt-1 line-clamp-2">Mariana S. & Luna (Maltês Spa)</p>
+              <div class="mt-3 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+                <span class="text-brand-yellow font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3"></i> Verificado no Google</span>
+                <span>3 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="netflix-card shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden glass-card-dark cursor-pointer group">
+          <div class="relative h-96">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Depoimento 4" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            
+            <div class="absolute top-3 left-3 bg-brand-yellow text-stone-900 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider">
+              Especial Felinos
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+              <div class="w-14 h-14 rounded-full bg-brand-yellow/90 text-stone-900 flex items-center justify-center shadow-xl backdrop-blur-sm">
+                <i data-lucide="play" class="w-7 h-7 fill-stone-900 ml-1"></i>
+              </div>
+            </div>
+
+            <div class="absolute bottom-0 p-5 w-full">
+              <div class="flex items-center gap-1 text-amber-400 mb-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              </div>
+              <h4 class="font-bold text-lg text-white">"Área exclusiva para gatos sem barulho de cães!"</h4>
+              <p class="text-xs text-stone-300 mt-1 line-clamp-2">Beatriz V. & Simba (Persa Spa)</p>
+              <div class="mt-3 flex items-center justify-between text-[11px] text-stone-400 font-medium">
+                <span class="text-brand-green font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3"></i> Atendimento Cat-Friendly</span>
+                <span>2.2 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= SEÇÃO DE SERVIÇOS & MENU DE TRATAMENTOS ================= -->
+  <section id="servicos" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-orange px-3 py-1 rounded-full bg-orange-50 border border-orange-200">
+            Menu Estético & Tratamentos
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-timber mt-3">
+            Experiências sob medida para cada raça
+          </h2>
+        </div>
+        <p class="text-stone-500 max-w-md text-sm mt-3 md:mt-0">
+          Todos os procedimentos incluem limpeza de ouvidos, corte de unhas cirúrgico, escovação dental e hidratação das patinhas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Banho Terapêutico -->
+        <div class="glass-card rounded-3xl p-6 border border-stone-200 hover:shadow-2xl transition-all relative overflow-hidden group">
+          <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=600&q=80" alt="Banho Pet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold tag-blue">Mais Pedido</span>
+          </div>
+
+          <h3 class="font-serif text-xl font-bold text-stone-800 mb-2">Banho Terapêutico & Hidratação</h3>
+          <p class="text-sm text-stone-600 mb-4">
+            Shampoo vegano hipoalergênico, banho de ozônio para controle de dermatites e secagem silenciosa.
+          </p>
+
+          <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+            <div>
+              <span class="text-xs text-stone-400 block">A partir de</span>
+              <span class="text-xl font-extrabold text-brand-timber">R$ 89<span class="text-xs font-normal">,00</span></span>
+            </div>
+            <a href="#agendamento" onclick="selectService('Banho Terapêutico & Hidratação')" class="px-4 py-2 rounded-xl bg-sky-50 text-brand-blue font-bold text-xs hover:bg-brand-blue hover:text-white transition-colors">
+              Selecionar
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Tosa de Tesoura VIP -->
+        <div class="glass-card rounded-3xl p-6 border-2 border-amber-600/30 shadow-xl relative overflow-hidden group bg-gradient-to-b from-white to-amber-50/30">
+          <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&w=600&q=80" alt="Tosa Pet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold tag-yellow">Especial da Casa</span>
+          </div>
+
+          <h3 class="font-serif text-xl font-bold text-stone-800 mb-2">Tosa de Tesoura Especializada</h3>
+          <p class="text-sm text-stone-600 mb-4">
+            Modelagem refinada respeitando os padrões oficiais da raça ou estilo asiático fofo (Asian Style).
+          </p>
+
+          <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+            <div>
+              <span class="text-xs text-stone-400 block">A partir de</span>
+              <span class="text-xl font-extrabold text-brand-timber">R$ 149<span class="text-xs font-normal">,00</span></span>
+            </div>
+            <a href="#agendamento" onclick="selectService('Tosa Especializada')" class="px-4 py-2 rounded-xl wood-accent-gradient text-white font-bold text-xs hover:opacity-90 transition-opacity">
+              Selecionar
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Day Spa Holístico -->
+        <div class="glass-card rounded-3xl p-6 border border-stone-200 hover:shadow-2xl transition-all relative overflow-hidden group">
+          <div class="h-48 rounded-2xl overflow-hidden mb-6 relative">
+            <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&w=600&q=80" alt="Spa Pet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold tag-green">Relax Total</span>
+          </div>
+
+          <h3 class="font-serif text-xl font-bold text-stone-800 mb-2">Day Spa & Aromaterapia</h3>
+          <p class="text-sm text-stone-600 mb-4">
+            Massagem relaxante com óleos essenciais seguros, ôfuro morno com pétalas e banho de luz infravermelha.
+          </p>
+
+          <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+            <div>
+              <span class="text-xs text-stone-400 block">A partir de</span>
+              <span class="text-xl font-extrabold text-brand-timber">R$ 219<span class="text-xs font-normal">,00</span></span>
+            </div>
+            <a href="#agendamento" onclick="selectService('Day Spa Holístico')" class="px-4 py-2 rounded-xl bg-emerald-50 text-brand-green font-bold text-xs hover:bg-brand-green hover:text-white transition-colors">
+              Selecionar
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= MOSTRUÁRIO DE ACESSÓRIOS & BOWLS COM ANIMAÇÃO DE MOVIMENTO ================= -->
+  <section id="produtos" class="py-20 bg-stone-100/80 border-y border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow px-3 py-1 rounded-full bg-amber-100 text-amber-900">
+          Boutique Selecionada
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-timber mt-3">
+          Vasilhas, Brinquedos & Utensílios de Alta Classe
+        </h2>
+        <p class="text-stone-600 mt-2 text-sm">
+          Design ergonômico, cerâmica atóxica e acabamentos amadeirados que combinam com a decoração da sua casa.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Produto 1: Vasilha Ergonômica -->
+        <div class="bg-white rounded-3xl p-5 border border-stone-200 hover:shadow-xl transition-all relative group">
+          <div class="w-full h-44 rounded-2xl bg-amber-50/50 flex items-center justify-center relative overflow-hidden mb-4">
+            <div class="w-24 h-24 rounded-full bg-amber-200/40 animate-float-slow flex items-center justify-center">
+              <i data-lucide="utensils" class="w-12 h-12 text-amber-800"></i>
+            </div>
+            <span class="absolute top-2 left-2 text-[10px] font-bold tag-yellow px-2 py-0.5 rounded-md">Madeira Nobre</span>
+          </div>
+          <h4 class="font-bold text-stone-800 text-base">Bowl Ergonômico de Cerâmica & Jequitibá</h4>
+          <p class="text-xs text-stone-500 mt-1">Previne refluxo e protege a coluna do seu pet.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="font-black text-brand-timber text-lg">R$ 189,90</span>
+            <button onclick="openWhatsAppDirect('Gostaria de encomendar o Bowl Ergonômico de Cerâmica & Jequitibá!')" class="p-2.5 rounded-xl bg-stone-900 text-white hover:bg-brand-orange transition-colors">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Produto 2: Brinquedo Mordedor Interativo -->
+        <div class="bg-white rounded-3xl p-5 border border-stone-200 hover:shadow-xl transition-all relative group">
+          <div class="w-full h-44 rounded-2xl bg-orange-50/50 flex items-center justify-center relative overflow-hidden mb-4">
+            <div class="w-24 h-24 rounded-full bg-orange-200/40 animate-float-reverse flex items-center justify-center">
+              <i data-lucide="bone" class="w-12 h-12 text-brand-orange"></i>
+            </div>
+            <span class="absolute top-2 left-2 text-[10px] font-bold tag-orange px-2 py-0.5 rounded-md">Borracha Natural</span>
+          </div>
+          <h4 class="font-bold text-stone-800 text-base">Osso Interativo Anti-Ansiedade</h4>
+          <p class="text-xs text-stone-500 mt-1">Estimula o raciocínio e limpa os dentes brincando.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="font-black text-brand-timber text-lg">R$ 79,90</span>
+            <button onclick="openWhatsAppDirect('Gostaria de adquirir o Osso Interativo Anti-Ansiedade!')" class="p-2.5 rounded-xl bg-stone-900 text-white hover:bg-brand-orange transition-colors">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Produto 3: Cama Ortopédica Veludo -->
+        <div class="bg-white rounded-3xl p-5 border border-stone-200 hover:shadow-xl transition-all relative group">
+          <div class="w-full h-44 rounded-2xl bg-sky-50/50 flex items-center justify-center relative overflow-hidden mb-4">
+            <div class="w-24 h-24 rounded-full bg-sky-200/40 animate-float-slow flex items-center justify-center">
+              <i data-lucide="box" class="w-12 h-12 text-brand-blue"></i>
+            </div>
+            <span class="absolute top-2 left-2 text-[10px] font-bold tag-blue px-2 py-0.5 rounded-md">Espuma Viscoelástica</span>
+          </div>
+          <h4 class="font-bold text-stone-800 text-base">Cama Nivelada Royal Velvet</h4>
+          <p class="text-xs text-stone-500 mt-1">Impermeável, lavável e ultra macia.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="font-black text-brand-timber text-lg">R$ 349,00</span>
+            <button onclick="openWhatsAppDirect('Gostaria de saber mais sobre a Cama Nivelada Royal Velvet!')" class="p-2.5 rounded-xl bg-stone-900 text-white hover:bg-brand-orange transition-colors">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Produto 4: Fonte de Água Purificada -->
+        <div class="bg-white rounded-3xl p-5 border border-stone-200 hover:shadow-xl transition-all relative group">
+          <div class="w-full h-44 rounded-2xl bg-emerald-50/50 flex items-center justify-center relative overflow-hidden mb-4">
+            <div class="w-24 h-24 rounded-full bg-emerald-200/40 animate-float-reverse flex items-center justify-center">
+              <i data-lucide="droplet" class="w-12 h-12 text-brand-green"></i>
+            </div>
+            <span class="absolute top-2 left-2 text-[10px] font-bold tag-green px-2 py-0.5 rounded-md">Filtro de Carvão</span>
+          </div>
+          <h4 class="font-bold text-stone-800 text-base">Fonte Silenciosa de Inox 3L</h4>
+          <p class="text-xs text-stone-500 mt-1">Mantém a água geladinha e filtrada 24h.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="font-black text-brand-timber text-lg">R$ 259,90</span>
+            <button onclick="openWhatsAppDirect('Quero encomendar a Fonte Silenciosa de Inox!')" class="p-2.5 rounded-xl bg-stone-900 text-white hover:bg-brand-orange transition-colors">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FORMULÁRIO DE AGENDAMENTO INTEGRAÇÃO DIRETA COM WHATSAPP ================= -->
+  <section id="agendamento" class="py-20 relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="wood-accent-gradient rounded-3xl p-8 sm:p-12 shadow-2xl border border-amber-600/40 text-white relative overflow-hidden">
+        
+        <!-- Elementos Decorativos -->
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow px-3 py-1 rounded-full bg-white/10 border border-white/20">
+            Agendamento Expresso & Direto
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-amber-100 mt-3">
+            Reserve o Horário do Seu Campeão
+          </h2>
+          <p class="text-stone-300 text-sm mt-2">
+            Preencha os dados abaixo. O formulário irá gerar a mensagem formatada e abrir direto no WhatsApp oficial da nossa loja.
+          </p>
+        </div>
+
+        <form id="whatsapp-booking-form" class="space-y-6 max-w-3xl mx-auto">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Nome Tutor -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-amber-200 mb-2">Seu Nome Completo *</label>
+              <div class="relative">
+                <i data-lucide="user" class="w-5 h-5 text-stone-400 absolute left-4 top-3.5"></i>
+                <input type="text" id="tutor-name" required placeholder="Ex: Ana Clara Silva" class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm" />
+              </div>
+            </div>
+
+            <!-- Nome do Pet & Raça -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-amber-200 mb-2">Nome do Pet & Raça *</label>
+              <div class="relative">
+                <i data-lucide="paw-print" class="w-5 h-5 text-stone-400 absolute left-4 top-3.5"></i>
+                <input type="text" id="pet-info" required placeholder="Ex: Bob (Golden Retriever)" class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm" />
+              </div>
+            </div>
+
+            <!-- Escolha do Serviço -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-amber-200 mb-2">Serviço Desejado *</label>
+              <div class="relative">
+                <i data-lucide="scissors" class="w-5 h-5 text-stone-400 absolute left-4 top-3.5"></i>
+                <select id="service-choice" required class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-stone-900 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm">
+                  <option value="Banho Terapêutico & Ozônio">Banho Terapêutico & Ozônio</option>
+                  <option value="Tosa Especializada de Tesoura">Tosa Especializada de Tesoura</option>
+                  <option value="Day Spa & Aromaterapia">Day Spa & Aromaterapia</option>
+                  <option value="Consulta Veterinária de Rotina">Consulta Veterinária de Rotina</option>
+                  <option value="Pacote Mensal VIP">Pacote Mensal VIP</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Data Preferencial -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-amber-200 mb-2">Data e Horário Preferencial *</label>
+              <div class="relative">
+                <i data-lucide="calendar" class="w-5 h-5 text-stone-400 absolute left-4 top-3.5"></i>
+                <input type="text" id="booking-date" required placeholder="Ex: Amanhã às 14:00h" class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm" />
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Observações Especiais -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-amber-200 mb-2">Alguma observação especial? (Opcional)</label>
+            <textarea id="booking-notes" rows="3" placeholder="Ex: Ele é idoso e tem alergia a perfume forte..." class="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-yellow text-sm"></textarea>
+          </div>
+
+          <!-- Botão Enviar para WhatsApp -->
+          <div class="pt-2">
+            <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-brand-green to-emerald-600 hover:from-emerald-500 hover:to-brand-green text-white font-black text-base shadow-xl shadow-emerald-900/40 transition-all flex items-center justify-center gap-3 group">
+              <i data-lucide="message-square" class="w-6 h-6 text-amber-200 group-hover:scale-110 transition-transform"></i>
+              <span>CONFIRMAR AGENDAMENTO NO WHATSAPP</span>
+            </button>
+            <p class="text-[11px] text-center text-stone-400 mt-2">
+              🔒 Seus dados estão protegidos. Atendimento imediato de nossa equipe.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= PLANOS VIP MENSAL ================= -->
+  <section id="planos" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-green px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200">
+          Clube de Assinatura Lumière
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-timber mt-3">
+          Mantenha seu pet impecável o ano todo
+        </h2>
+        <p class="text-stone-600 mt-2 text-sm">
+          Planos mensais com desconto exclusivo, busca em domicílio com transporte climatizado e prioridade na agenda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Plano Prata -->
+        <div class="rounded-3xl p-8 border border-stone-200 bg-stone-50 hover:shadow-xl transition-all">
+          <span class="text-xs font-bold uppercase text-stone-500">Plano Essencial</span>
+          <h3 class="font-serif text-2xl font-bold text-stone-800 mt-1">Silver Pet</h3>
+          <div class="my-6">
+            <span class="text-4xl font-black text-brand-timber">R$ 249</span>
+            <span class="text-xs text-stone-500">/mês</span>
+          </div>
+          <ul class="space-y-3 text-sm text-stone-600 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 2 Banhos completos com ozônio</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> Corte de unhas e ouvido</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-green"></i> 10% de desconto na boutique</li>
+          </ul>
+          <button onclick="openWhatsAppDirect('Gostaria de assinar o Plano Silver Pet!')" class="w-full py-3 rounded-xl border-2 border-stone-800 text-stone-800 font-bold hover:bg-stone-800 hover:text-white transition-colors">
+            Assinar Plano
+          </button>
+        </div>
+
+        <!-- Plano Ouro (Destaque) -->
+        <div class="rounded-3xl p-8 wood-accent-gradient text-white shadow-2xl relative border-2 border-amber-500 scale-105">
+          <span class="absolute -top-3 right-6 bg-brand-yellow text-stone-900 text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-wider shadow">
+            Mais Vendido
+          </span>
+          <span class="text-xs font-bold uppercase text-amber-300">Plano Completo</span>
+          <h3 class="font-serif text-2xl font-bold text-amber-100 mt-1">Gold VIP Care</h3>
+          <div class="my-6">
+            <span class="text-4xl font-black text-white">R$ 429</span>
+            <span class="text-xs text-amber-200">/mês</span>
+          </div>
+          <ul class="space-y-3 text-sm text-stone-200 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-yellow"></i> 4 Banhos mensais ilimitados</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-yellow"></i> 1 Tosa higiênica ou de tesoura</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-yellow"></i> Taxi Dog Gratuito (raio de 5km)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-yellow"></i> 20% de desconto em consultas</li>
+          </ul>
+          <button onclick="openWhatsAppDirect('Quero assinar o Plano Gold VIP Care!')" class="w-full py-3 rounded-xl bg-brand-yellow text-stone-900 font-black hover:bg-amber-400 transition-colors shadow-lg">
+            Assinar Agora
+          </button>
+        </div>
+
+        <!-- Plano Diamante -->
+        <div class="rounded-3xl p-8 border border-stone-200 bg-stone-50 hover:shadow-xl transition-all">
+          <span class="text-xs font-bold uppercase text-brand-blue">Plano Realeza</span>
+          <h3 class="font-serif text-2xl font-bold text-stone-800 mt-1">Diamond Spa</h3>
+          <div class="my-6">
+            <span class="text-4xl font-black text-brand-timber">R$ 699</span>
+            <span class="text-xs text-stone-500">/mês</span>
+          </div>
+          <ul class="space-y-3 text-sm text-stone-600 mb-8">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-blue"></i> Tratamento ilimitado de Spa</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-blue"></i> Aromaterapia & Ôfuro semanal</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-blue"></i> Vet 24h por WhatsApp</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-blue"></i> Taxi Dog sem limite de km</li>
+          </ul>
+          <button onclick="openWhatsAppDirect('Gostaria de assinar o Plano Diamond Spa!')" class="w-full py-3 rounded-xl border-2 border-stone-800 text-stone-800 font-bold hover:bg-stone-800 hover:text-white transition-colors">
+            Assinar Plano
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= RODAPÉ LUXUOSO COM DETALHES AMADEIRADOS ================= -->
+  <footer class="wood-accent-gradient text-amber-100 pt-16 pb-12 border-t border-amber-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Coluna 1: Logo & Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-700/50 border border-amber-500/30 flex items-center justify-center text-brand-yellow">
+              <i data-lucide="paw-print" class="w-6 h-6"></i>
+            </div>
+            <span class="font-serif text-xl font-bold tracking-tight text-white">LUMIÈRE PET SPA</span>
+          </div>
+          <p class="text-xs text-stone-300 leading-relaxed">
+            O mais alto padrão de estética, bem-estar e cuidados veterinários da cidade. Higiene clínica em um ambiente acolhedor amadeirado.
+          </p>
+        </div>
+
+        <!-- Coluna 2: Horários & Endereço -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-yellow pl-3">Endereço & Atendimento</h4>
+          <ul class="space-y-2 text-xs text-stone-300">
+            <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-yellow"></i> Av. Das Américas, 4200 - Jardins</li>
+            <li class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-brand-green"></i> Seg a Sáb: 08:00h às 20:00h</li>
+            <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-brand-blue"></i> Estacionamento Exclusivo com Manobrista</li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Links Rápidos -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-orange pl-3">Links Rápidos</h4>
+          <ul class="space-y-2 text-xs text-stone-300">
+            <li><a href="#diferenciais" class="hover:text-brand-yellow transition-colors">Esterilização Médica</a></li>
+            <li><a href="#servicos" class="hover:text-brand-yellow transition-colors">Banho de Ozônio & Tosa</a></li>
+            <li><a href="#netflix-reviews" class="hover:text-brand-yellow transition-colors">Depoimentos dos Tutores</a></li>
+            <li><a href="#produtos" class="hover:text-brand-yellow transition-colors">Vasilhas & Brinquedos</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 4: Redes & Selo de Higiene -->
+        <div>
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider mb-4 border-l-2 border-brand-green pl-3">Redes Sociais</h4>
+          <div class="flex gap-3 mb-4">
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-yellow hover:text-stone-900 flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-blue flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-brand-red flex items-center justify-center transition-colors">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <span class="text-[10px] text-amber-300/80 block">© 2026 Lumière Pet Shop. Todos os direitos reservados.</span>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-amber-800/60 text-center text-xs text-amber-200/50">
+        Desenvolvido com o padrão superior de performance visual e tecnologia web interativa.
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ================= BOTÃO FLUTUANTE DO WHATSAPP COM ANIMAÇÃO PISCANTE DE ALTA ATENÇÃO ================= -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button onclick="openWhatsAppDirect('Olá! Encontrei o site da Lumière Pet Spa e gostaria de tirar uma dúvida.')" class="relative group flex items-center justify-center">
+      
+      <!-- Pulso de Brilho Dinâmico -->
+      <span class="absolute w-full h-full rounded-full bg-emerald-500 animate-pulse-glow"></span>
+      
+      <!-- Botão Verde WhatsApp Principal -->
+      <div class="relative w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-600 to-green-400 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform border-2 border-white">
+        <i data-lucide="message-circle" class="w-9 h-9 fill-white"></i>
+      </div>
+
+      <!-- Tooltip chamativa flutuante -->
+      <div class="absolute right-20 bg-stone-900 text-white text-xs font-bold py-2 px-3.5 rounded-xl shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-2 border border-stone-700">
+        <span class="w-2 h-2 rounded-full bg-brand-green animate-ping"></span>
+        <span>Atendimento Online Agora!</span>
+      </div>
+
+    </button>
+  </div>
+
+
+  <!-- ================= SCRIPTS & INTERATIVIDADE ================= -->
+  <script>
+    // Inicializar Ícones Lucide
+    lucide.createIcons();
+
+    // Configuração do WhatsApp da Loja (Substituir com o número real se necessário)
+    const PHONE_NUMBER = "5511999999999";
+
+    // Função de abertura direta no WhatsApp
+    function openWhatsAppDirect(customMessage) {
+      const encodedText = encodeURIComponent(customMessage);
+      window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodedText}`, '_blank');
+    }
+
+    // Formulário de Agendamento -> WhatsApp payload
+    document.getElementById('whatsapp-booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const tutor = document.getElementById('tutor-name').value;
+      const pet = document.getElementById('pet-info').value;
+      const service = document.getElementById('service-choice').value;
+      const date = document.getElementById('booking-date').value;
+      const notes = document.getElementById('booking-notes').value;
+
+      let message = `*NOVO AGENDAMENTO VIP - LUMIÈRE PET SPA*\n\n`;
+      message += `👤 *Tutor:* ${tutor}\n`;
+      message += `🐾 *Pet & Raça:* ${pet}\n`;
+      message += `✂️ *Serviço:* ${service}\n`;
+      message += `📅 *Data/Horário:* ${date}\n`;
+      if (notes.trim() !== '') {
+        message += `📝 *Observações:* ${notes}\n`;
+      }
+      message += `\n_Por favor, confirme a disponibilidade deste horário!_`;
+
+      openWhatsAppDirect(message);
+    });
+
+    // Selecionar Serviço pelo Menu
+    function selectService(serviceName) {
+      const selectElement = document.getElementById('service-choice');
+      for (let i = 0; i < selectElement.options.length; i++) {
+        if (selectElement.options[i].text.includes(serviceName) || selectElement.options[i].value.includes(serviceName)) {
+          selectElement.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    // Scroll Horizontal do Carrossel Netflix
+    const container = document.getElementById('netflix-container');
+    document.getElementById('netflix-next').addEventListener('click', () => {
+      container.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+    document.getElementById('netflix-prev').addEventListener('click', () => {
+      container.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
