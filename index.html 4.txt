@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURUM — Cozinha Autoral Contemporânea | São Paulo</title>
+  <meta name="description" content="AURUM Cozinha Autoral em São Paulo. Cardápio premium, delivery e retirada. Hambúrgueres, pizzas, carnes dry-aged, massas frescas e carta de drinks.">
+  <meta name="theme-color" content="#0c0a08">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#cardapio">Ir ao cardápio</a>
+  <header class="header" id="header">
+    <a class="logo" href="#topo">
+      <span class="logo-mark"><span>A</span></span>
+      AURUM
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#mais-vendidos">Mais vendidos</a>
+      <a href="#combos">Combos</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#casa">A Casa</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn cart-fab" data-open-cart aria-label="Abrir pedido">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 7h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 7 5 3H2"/></svg>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </button>
+      <button class="icon-btn menu-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+  <nav class="mobile-nav">
+    <a href="#cardapio">Cardápio</a>
+    <a href="#mais-vendidos">Mais vendidos</a>
+    <a href="#combos">Combos</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#casa">A Casa</a>
+  </nav>
+
+  <main id="topo">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-kicker">Jardins · São Paulo · Desde 2011</div>
+        <h1>O paladar como espetáculo.</h1>
+        <p>Cozinha autoral contemporânea, brasa controlada e ingredientes de origem. Peça delivery ou retire na casa — o mesmo ritual, à sua mesa.</p>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#cardapio">Ver cardápio</a>
+          <button class="btn btn-ghost" data-open-cart>Meu pedido</button>
+        </div>
+        <div class="hero-meta">
+          <span>Entrega 35–50 min</span>
+          <span>Retirada 20–30 min</span>
+          <span>Pedido mín. R$ 40</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mais-vendidos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Seleção da casa</div>
+            <h2>Mais vendidos</h2>
+          </div>
+        </div>
+        <div class="rail">
+          <button class="rail-btn prev" aria-label="Anterior">‹</button>
+          <div class="rail-track" id="bestsellers"></div>
+          <button class="rail-btn next" aria-label="Próximo">›</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="cardapio"></div>
+    <div id="rails"></div>
+
+    <section class="section" id="combos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Experiências</div>
+            <h2>Combos especiais</h2>
+          </div>
+        </div>
+        <div class="rail">
+          <button class="rail-btn prev" aria-label="Anterior">‹</button>
+          <div class="rail-track" id="combos-featured"></div>
+          <button class="rail-btn next" aria-label="Próximo">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container spotlight">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=80" alt="Sala do restaurante Aurum">
+        <div>
+          <div class="kicker">A casa</div>
+          <p class="quote">Brasa, tempo e silêncio. Cada prato nasce de um corte preciso e de um fogo que não se apressa.</p>
+          <p style="color:var(--muted);margin-top:16px">No Jardins, o Aurum recebe à mesa e envia à sua casa o mesmo cuidado: ingredientes de origem, massas frescas do dia e uma carta enxuta de drinks autorais.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="avaliacoes">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Quem sentou à mesa</div>
+            <h2>Avaliações</h2>
+          </div>
+        </div>
+        <div class="reviews">
+          <article class="review"><div class="stars">★★★★★</div><p>O smash é o melhor de São Paulo. Entrega pontual e o pedido chegou impecável.</p><strong>Marina K.</strong></article>
+          <article class="review"><div class="stars">★★★★★</div><p>Pizza de trufa no nível de trattoria. Pedimos retirada e estava quente, no ponto.</p><strong>Lucas M.</strong></article>
+          <article class="review"><div class="stars">★★★★★</div><p>O combo casal vale cada centavo. Atendimento pelo WhatsApp rápido e educado.</p><strong>Helena P.</strong></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="casa">
+      <div class="container info-grid">
+        <div>
+          <div class="kicker">Visite</div>
+          <h2>Localização e horário</h2>
+          <p id="address" style="margin:16px 0;color:var(--muted)"></p>
+          <ul class="hours" id="hours"></ul>
+          <p style="margin-top:18px">Tel. <span id="phone"></span> · <span id="email"></span> · <span id="insta"></span></p>
+        </div>
+        <a class="map-frame" href="https://maps.google.com/?q=Rua+Haddock+Lobo+1427+Sao+Paulo" target="_blank" rel="noopener">
+          <span class="btn btn-gold">Abrir no mapa</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
+      <span>© <span id="year"></span> Aurum Cozinha Autoral</span>
+      <span>Jardins · São Paulo</span>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" id="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.47c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54 1.8.78 2.5.84 3.4.71.52-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M16.02 3.2C9.4 3.2 4.04 8.56 4.04 15.18c0 2.1.55 4.15 1.6 5.96L4 28.8l7.84-1.58c1.74.95 3.7 1.45 5.7 1.45 6.62 0 11.98-5.36 11.98-11.98S22.64 3.2 16.02 3.2zm0 21.84c-1.8 0-3.56-.48-5.1-1.4l-.36-.21-4.65.94.98-4.53-.24-.38a9.9 9.9 0 0 1-1.52-5.28c0-5.47 4.45-9.92 9.92-9.92s9.92 4.45 9.92 9.92-4.45 9.86-9.95 9.86z"/></svg>
+  </a>
+
+  <div class="order-bar" id="order-bar">
+    <div>Meu Pedido · <strong id="order-total">R$ 0,00</strong></div>
+    <button class="btn btn-gold" data-open-cart>Ver carrinho</button>
+  </div>
+
+  <div class="drawer" id="cart-drawer">
+    <div class="backdrop" data-close-cart></div>
+    <aside class="drawer-panel" aria-label="Carrinho">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>Meu pedido</h2>
+        <button class="icon-btn" data-close-cart aria-label="Fechar">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-total">
+        <div class="row"><span>Subtotal</span><span id="subtotal">R$ 0,00</span></div>
+        <div class="row"><span>Taxa</span><span id="fee">R$ 0,00</span></div>
+        <div class="row strong"><span>Total</span><span id="total">R$ 0,00</span></div>
+        <button class="btn btn-gold" style="width:100%;margin-top:12px" data-open-checkout>Finalizar pedido</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="modal" id="checkout-modal">
+    <div class="backdrop" data-close-checkout></div>
+    <div class="modal-panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>Finalizar</h2>
+        <button class="icon-btn" data-close-checkout aria-label="Fechar">✕</button>
+      </div>
+      <form id="checkout-form">
+        <div class="fulfill">
+          <div class="choice active" data-fulfill="entrega">Entrega</div>
+          <div class="choice" data-fulfill="retirada">Retirada</div>
+        </div>
+        <div class="form-grid">
+          <div><label>Nome</label><input name="nome" required placeholder="Seu nome"></div>
+          <div><label>Telefone</label><input name="telefone" required placeholder="(11) 90000-0000"></div>
+          <div id="address-fields">
+            <label>Endereço</label>
+            <input name="endereco" placeholder="Rua, número, bairro">
+            <label>Complemento</label>
+            <input name="complemento" placeholder="Apto, bloco">
+          </div>
+          <div><label>Observações</label><textarea name="obs" rows="3" placeholder="Ponto da carne, alergias..."></textarea></div>
+        </div>
+        <button class="btn btn-gold" style="width:100%">Enviar pedido no WhatsApp · <span id="checkout-total">R$ 0,00</span></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/config.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
